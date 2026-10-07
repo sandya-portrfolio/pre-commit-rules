@@ -1,0 +1,46 @@
+name: Terraform Validate
+
+on:
+  pull_request:
+    paths:
+      - '**.tf'
+      - '**.tfvars'
+      - 'provider.tf'
+      - 'version.tf'
+  push:
+    branches:
+      - main
+    paths:
+      - '**.tf'
+      - '**.tfvars'
+      - 'provider.tf'
+      - 'version.tf'
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: latest
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+        continue-on-error: true
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Setup tflint
+        uses: terraform-linters/setup-tflint@v4
+
+      - name: Init tflint
+        run: tflint --init
+
+      - name: Run tflint
+        run: tflint -f compact

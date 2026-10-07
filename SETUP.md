@@ -233,6 +233,70 @@ git push --no-verify
 
 ---
 
+## GitHub CI/CD Workflows (Optional but Recommended)
+
+Reusable workflow templates for any project type. Copy to your `.github/workflows/` directory.
+
+### Available Workflow Templates
+
+**Terraform Projects:**
+```bash
+curl -o .github/workflows/terraform-validate.yml \
+  https://raw.githubusercontent.com/sandya-portrfolio/pre-commit-rules/main/.github/workflows/terraform-validate.yml
+```
+Checks: `terraform fmt`, `terraform validate`, `tflint`
+
+**Node/React Projects:**
+```bash
+curl -o .github/workflows/node-ci.yml \
+  https://raw.githubusercontent.com/sandya-portrfolio/pre-commit-rules/main/.github/workflows/node-ci.yml
+```
+Checks: format, lint, test, build
+
+**Python Projects:**
+```bash
+curl -o .github/workflows/python-ci.yml \
+  https://raw.githubusercontent.com/sandya-portrfolio/pre-commit-rules/main/.github/workflows/python-ci.yml
+```
+Checks: black, isort, pylint, pytest
+
+**Go Projects:**
+```bash
+curl -o .github/workflows/go-ci.yml \
+  https://raw.githubusercontent.com/sandya-portrfolio/pre-commit-rules/main/.github/workflows/go-ci.yml
+```
+Checks: gofmt, go vet, golangci-lint, tests
+
+### Setup Workflows
+
+**Step 1: Create directory**
+```bash
+mkdir -p .github/workflows
+```
+
+**Step 2: Copy templates** (choose for your project type)
+```bash
+# For Terraform
+curl -o .github/workflows/terraform-validate.yml \
+  https://raw.githubusercontent.com/sandya-portrfolio/pre-commit-rules/main/.github/workflows/terraform-validate.yml
+
+# For Node/React
+curl -o .github/workflows/node-ci.yml \
+  https://raw.githubusercontent.com/sandya-portrfolio/pre-commit-rules/main/.github/workflows/node-ci.yml
+```
+
+**Step 3: Push to GitHub**
+```bash
+git add .github/
+git commit -m "Add CI/CD workflows"
+git push origin <branch>
+```
+
+**Step 4: Check GitHub**
+Go to your repo → Actions tab → Workflows should run automatically on next push
+
+---
+
 ## Documentation
 
 | File | Purpose |
@@ -243,6 +307,7 @@ git push --no-verify
 | **docs/TROUBLESHOOTING.md** | Common issues |
 | **docs/FAQ.md** | Questions |
 | **docs/EXAMPLES.md** | Usage examples |
+| **.github/workflows/** | Reusable CI/CD templates |
 
 ---
 

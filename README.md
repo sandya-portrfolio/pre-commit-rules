@@ -249,6 +249,45 @@ make help
 
 ---
 
+## 🔄 GitHub CI/CD Workflows (Optional)
+
+Reusable workflow templates for any project type. Automatically validate code on every push/PR.
+
+### Available Templates
+
+Copy any of these to your `.github/workflows/` directory:
+
+```bash
+# Terraform projects
+curl -o .github/workflows/terraform-validate.yml \
+  https://raw.githubusercontent.com/sandya-portrfolio/pre-commit-rules/main/.github/workflows/terraform-validate.yml
+
+# Node/React projects
+curl -o .github/workflows/node-ci.yml \
+  https://raw.githubusercontent.com/sandya-portrfolio/pre-commit-rules/main/.github/workflows/node-ci.yml
+
+# Python projects
+curl -o .github/workflows/python-ci.yml \
+  https://raw.githubusercontent.com/sandya-portrfolio/pre-commit-rules/main/.github/workflows/python-ci.yml
+
+# Go projects
+curl -o .github/workflows/go-ci.yml \
+  https://raw.githubusercontent.com/sandya-portrfolio/pre-commit-rules/main/.github/workflows/go-ci.yml
+```
+
+### What They Check
+
+| Workflow | Checks |
+|----------|--------|
+| **terraform-validate.yml** | `terraform fmt`, `terraform validate`, `tflint` |
+| **node-ci.yml** | format, lint, test, build |
+| **python-ci.yml** | black, isort, pylint, pytest |
+| **go-ci.yml** | gofmt, go vet, golangci-lint, tests |
+
+**See SETUP.md for complete workflow setup instructions.**
+
+---
+
 ## 📖 Documentation
 
 | File | Purpose |
@@ -260,6 +299,7 @@ make help
 | **docs/EXAMPLES.md** | Real-world usage examples |
 | **scripts/pre-push** | Auto-runs before every push |
 | **scripts/pre-commit** | Auto-runs before every commit |
+| **.github/workflows/** | Reusable CI/CD templates |
 
 ---
 
