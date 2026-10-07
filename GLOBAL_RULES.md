@@ -64,35 +64,45 @@ Ready for pipeline validation - MR #18.
 ## 5. ALL CHECKS MUST PASS LOCALLY BEFORE PUSH
 
 **Before every push, run ALL validation checks:**
-```bash
-# Terraform/IaC projects:
-terraform fmt -check      # Check formatting
-terraform validate        # Check syntax/config
-terraform plan           # Plan for all environments (dev, qa, prod)
-tflint                   # Lint check
 
-# Other projects:
-# Use project's linter, formatter, test, and build commands
+**Terraform/IaC Projects - MANDATORY CHECKLIST:**
+```bash
+# 1. Format check
+terraform fmt -check -recursive
+
+# 2. Validate configuration (REQUIRED)
+terraform validate
+
+# 3. Validate with each environment (REQUIRED)
+terraform validate -var-file=conf/dev.tfvars
+terraform validate -var-file=conf/qa.tfvars
+terraform validate -var-file=conf/prod.tfvars
+
+# 4. Plan all environments (REQUIRED)
+terraform plan -var-file=conf/dev.tfvars
+terraform plan -var-file=conf/qa.tfvars
+terraform plan -var-file=conf/prod.tfvars
+
+# 5. Lint check
+tflint
 ```
 
-**Rule:** ❌ Never push if local checks fail
+**Other Projects:**
+- Use project's linter, formatter, test, and build commands
 
-**Why:** Prevents wasted pipeline time, keeps commit history clean, catches issues early, validates infrastructure changes won't fail
+**Rule:** ❌ Never push if ANY local check fails
+
+**Why:** Prevents wasted pipeline time, keeps commit history clean, catches issues early, validates all infrastructure changes work in all environments
 
 **Workflow:**
 1. Make changes locally
-2. Run all validation checks (including terraform plan for all environments)
+2. Run ALL validation checks above
 3. Fix any issues found
-4. Re-run checks until all pass ✅
+4. Re-run ALL checks until every single one passes ✅
 5. THEN push to branch
 6. Monitor pipeline until green
 
-**For Terraform Multi-Environment:**
-- Run `terraform validate` with each tfvars file
-- Run `terraform plan -var-file=conf/dev.tfvars`
-- Run `terraform plan -var-file=conf/qa.tfvars`
-- Run `terraform plan -var-file=conf/prod.tfvars`
-- Ensure all 3 environments plan successfully
+**Critical:** Both `terraform validate` AND `terraform plan` must pass for ALL 3 environments before any push!
 
 ---
 
