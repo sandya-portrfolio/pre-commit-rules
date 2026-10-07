@@ -68,23 +68,31 @@ Ready for pipeline validation - MR #18.
 # Terraform/IaC projects:
 terraform fmt -check      # Check formatting
 terraform validate        # Check syntax/config
+terraform plan           # Plan for all environments (dev, qa, prod)
 tflint                   # Lint check
 
 # Other projects:
-# Use project's linter, formatter, and test commands
+# Use project's linter, formatter, test, and build commands
 ```
 
 **Rule:** ❌ Never push if local checks fail
 
-**Why:** Prevents wasted pipeline time, keeps commit history clean, catches issues early
+**Why:** Prevents wasted pipeline time, keeps commit history clean, catches issues early, validates infrastructure changes won't fail
 
 **Workflow:**
 1. Make changes locally
-2. Run all validation checks
+2. Run all validation checks (including terraform plan for all environments)
 3. Fix any issues found
 4. Re-run checks until all pass ✅
 5. THEN push to branch
 6. Monitor pipeline until green
+
+**For Terraform Multi-Environment:**
+- Run `terraform validate` with each tfvars file
+- Run `terraform plan -var-file=conf/dev.tfvars`
+- Run `terraform plan -var-file=conf/qa.tfvars`
+- Run `terraform plan -var-file=conf/prod.tfvars`
+- Ensure all 3 environments plan successfully
 
 ---
 
