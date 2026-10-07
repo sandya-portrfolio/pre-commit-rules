@@ -4,6 +4,10 @@
 
 This repository contains **GLOBAL_RULES**, automation scripts, and CI/CD templates that ensure every developer, every machine, and every project follows the same quality standards.
 
+**Choose Your Method:**
+- 🤖 **Claude Method** - Automatic git hooks + Makefile (Set it and forget it)
+- 🐍 **Python Method** - Interactive script with menu selection (Choose which checks)
+
 ---
 
 ## 🎯 What This Does
@@ -13,6 +17,72 @@ This repository contains **GLOBAL_RULES**, automation scripts, and CI/CD templat
 ✅ **Saves Pipeline Time** - No wasted CI/CD runs on code that won't pass  
 ✅ **Team Consistency** - Everyone follows same standards, no exceptions  
 ✅ **Works Everywhere** - Same rules on any laptop, any machine, any team member  
+
+---
+
+## 🚀 Choose Your Implementation Method
+
+### 🤖 Claude Method (Automatic)
+
+**Location:** `/Claude` folder  
+**Best For:** Teams that want automatic enforcement with zero setup per commit  
+
+```bash
+cd Claude
+make setup           # One-time setup
+git commit -m "msg"  # Pre-commit hook auto-runs ✅
+git push            # Pre-push hook auto-runs ✅
+```
+
+**What you get:**
+- ✅ Automatic checks on every commit
+- ✅ Checks on every push
+- ✅ Auto-fix formatting
+- ✅ Single setup command
+- ✅ No thinking needed
+
+**See:** [Claude/README.md](Claude/README.md) for complete guide
+
+---
+
+### 🐍 Python Method (Interactive)
+
+**Location:** `/Python` folder  
+**Best For:** Developers who want to choose which checks to run  
+
+```bash
+cd Python
+python3 pre_commit_checks.py  # Interactive menu appears
+# Select: 1,2,3 (choose your checks)
+git push                      # Once checks pass
+```
+
+**What you get:**
+- ✅ Interactive menu to select checks
+- ✅ Run anytime, no git hooks
+- ✅ Flexible, transparent control
+- ✅ Perfect for learning
+- ✅ Multi-project support
+
+**See:** [Python/README.md](Python/README.md) for complete guide
+
+---
+
+## 📊 Comparison
+
+| Feature | Claude | Python |
+|---------|--------|--------|
+| **Setup Time** | 2 min | 1 min |
+| **Learning Curve** | Moderate | Easy |
+| **Auto Enforcement** | ✅ Yes | ❌ Manual |
+| **Interactive Menu** | ❌ No | ✅ Yes |
+| **Flexible** | Moderate | ✅ High |
+| **Best For** | Teams | Individuals |
+| **Best For** | Consistency | Transparency |
+
+**Choose Claude if:** Your team needs automatic enforcement  
+**Choose Python if:** You want control and transparency  
+**Use Both if:** Different projects have different needs
 
 ---
 
