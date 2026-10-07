@@ -207,7 +207,40 @@ make check-all
 
 ## 📋 Available Commands
 
-### Validation Commands
+### Using Python Script (Recommended - Interactive)
+
+```bash
+# Interactive mode (choose which checks to run)
+python pre_commit_checks.py
+
+# Example menu:
+# 1. 🏗️  Terraform (fmt, validate, tflint)
+# 2. 📦 Node/React (format, lint, test)
+# 3. 🐍 Python (black, isort, pylint, pytest)
+# 4. 🐹 Go (fmt, vet, lint, test)
+# 5. 📝 Git (uncommitted changes)
+# 
+# Select: 1,2  (runs Terraform + Node checks)
+```
+
+### Python Script Options
+
+```bash
+# Run all applicable checks
+python pre_commit_checks.py --all
+
+# Run specific check type
+python pre_commit_checks.py --terraform    # Only Terraform
+python pre_commit_checks.py --node         # Only Node/React
+python pre_commit_checks.py --python       # Only Python
+python pre_commit_checks.py --go           # Only Go
+python pre_commit_checks.py --git          # Only Git checks
+
+# Help
+python pre_commit_checks.py --help
+```
+
+### Using Makefile (Traditional)
 
 ```bash
 # Run ALL checks before push (recommended)

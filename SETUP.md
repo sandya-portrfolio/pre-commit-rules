@@ -147,6 +147,28 @@ git push origin <branch>
 
 ## Available Commands
 
+### Python Script (Interactive - Choose Checks)
+
+```bash
+# Interactive mode (select which checks to run)
+python pre_commit_checks.py
+
+# Run all detected checks
+python pre_commit_checks.py --all
+
+# Run specific checks only
+python pre_commit_checks.py --terraform    # Terraform only
+python pre_commit_checks.py --node         # Node/React only
+python pre_commit_checks.py --python       # Python only
+python pre_commit_checks.py --go           # Go only
+python pre_commit_checks.py --git          # Git checks only
+
+# Multiple types
+python pre_commit_checks.py --terraform --node  # Terraform + Node
+```
+
+### Makefile (Traditional)
+
 ```bash
 # Setup (first time only)
 make setup
